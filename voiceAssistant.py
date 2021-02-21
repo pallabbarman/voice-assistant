@@ -4,10 +4,10 @@ import datetime
 import wikipedia
 import webbrowser
 import os
+import random
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
-# print(voices[1].id)
 engine.setProperty('voice', voices[1].id)
 
 
@@ -82,4 +82,6 @@ if __name__ == "__main__":
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
 
-        
+        elif 'open code' in query:
+            codePath = "C:\\Microsoft VS Code\\Code.exe"
+            os.startfile(codePath)
