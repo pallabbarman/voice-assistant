@@ -4,7 +4,8 @@ import datetime
 import wikipedia
 import webbrowser
 import os
-import random
+import pyjokes
+import pywhatkit
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -44,7 +45,6 @@ def takeCommand():
         print(f"User said: {query}\n")
 
     except Exception as e:
-        # print(e)
         print("Say that again please...")
         return "None"
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
             webbrowser.get(
                 "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s").open("google.com")
 
-        elif 'play music' in query:
+        elif 'music' in query:
             music_dir = 'F:/Audio'
             songs = os.listdir(music_dir)
             os.startfile(os.path.join(music_dir, songs[0]))
@@ -85,3 +85,13 @@ if __name__ == "__main__":
         elif 'open code' in query:
             codePath = "C:\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
+
+        elif 'joke' in query:
+            jokes = pyjokes.get_joke()
+            print(jokes)
+            speak(jokes)
+
+        elif 'play' in query:
+            song = query.replace('play', '')
+            speak('playing...'+song)
+            pywhatkit.playonyt(song)
