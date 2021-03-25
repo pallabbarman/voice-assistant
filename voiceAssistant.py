@@ -32,7 +32,6 @@ def wishMe():
 
 
 def takeCommand():
-    # input will be take from microphone and return as a string in output
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
@@ -56,7 +55,6 @@ if __name__ == "__main__":
     # while True:
     if 1:
         query = takeCommand().lower()
-        # logic for executing tasks based on query
         if 'wikipedia' in query:
             speak('Searching Wikipedia...')
             query = query.replace("wikipedia", "")
@@ -78,7 +76,7 @@ if __name__ == "__main__":
             songs = os.listdir(music_dir)
             os.startfile(os.path.join(music_dir, songs[0]))
 
-        elif 'the time' in query:
+        elif 'time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
 
@@ -95,3 +93,7 @@ if __name__ == "__main__":
             song = query.replace('play', '')
             speak('playing...'+song)
             pywhatkit.playonyt(song)
+
+        elif 'search' in query:
+            search = 'https://www.google.com/search?q=' + query
+            webbrowser.open(search)
