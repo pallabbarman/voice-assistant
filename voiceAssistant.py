@@ -8,8 +8,9 @@ import pyjokes
 import pywhatkit
 import random
 import psutil
+import time
 
-engine = pyttsx3.init('sapi5')
+engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
@@ -181,7 +182,7 @@ if __name__ == "__main__":
                 continue
 
             elif 'random' in rand:
-                rand = random.randint(1, 200)
+                rand = random.randint(1, 50)
                 os.startfile(os.path.join(songs_dir, songs[rand]))
                 continue
 
@@ -194,7 +195,7 @@ if __name__ == "__main__":
             print(jokes)
             speak(jokes)
 
-        elif 'play' in query:
+        elif 'play in youtube' in query:
             song = query.replace('play', '')
             speak('playing...'+song)
             pywhatkit.playonyt(song)
@@ -245,6 +246,12 @@ if __name__ == "__main__":
         elif 'do you remember anything' in query:
             remember = open('memory.txt', 'r')
             speak("You asked me to remember that" + remember.read())
+
+        elif "don't listen" in query or "stop listening" in query:
+            speak("for how much seconds you want me to stop listening commands")
+            answer = int(takeCommand())
+            time.sleep(answer)
+            print(answer)
 
         elif 'offline' in query:
             speak("going Offline")
