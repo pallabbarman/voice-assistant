@@ -21,7 +21,7 @@ def speak(audio):
 
 
 def currentTime():
-    Time = datetime.datetime.now().strftime("%I:%M:%S")
+    Time = datetime.datetime.now().strftime("%I:%M:%S %p")
     speak("The current time is")
     speak(Time)
 
@@ -50,7 +50,7 @@ def wishMe():
     else:
         speak("Good Evening!")
 
-    speak("I am Emma. Please tell me how can I help you")
+    speak("I am Emma. Please tell me how can I help you?")
 
 
 def introduction():
@@ -127,7 +127,7 @@ if __name__ == "__main__":
         elif 'cpu' in query:
             cpu()
 
-        elif "who am I" in query:
+        elif 'who am I' in query:
             speak("If you can talk, then definitely you are a human")
 
         elif 'what is love' in query or 'tell me about love' in query:
@@ -196,7 +196,7 @@ if __name__ == "__main__":
             speak(jokes)
 
         elif 'play in youtube' in query:
-            song = query.replace('play', '')
+            song = query.replace('play in youtube', '')
             speak('playing...'+song)
             pywhatkit.playonyt(song)
 
@@ -221,7 +221,7 @@ if __name__ == "__main__":
             speak("Sir, Should i include date and time")
             dt = takeCommand()
             if 'yes' in dt or 'sure' in dt:
-                strTime = datetime.datetime.now().strftime("%H:%M:%S")
+                strTime = datetime.datetime.now().strftime("%I:%M:%S %p")
                 file.write(strTime)
                 file.write(" :- ")
                 file.write(note)
